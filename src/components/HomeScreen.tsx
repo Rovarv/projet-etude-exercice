@@ -23,6 +23,7 @@ interface HomeScreenProps {
   searchQuery: string;
   onSearchChange: (q: string) => void;
   onOpenSupabaseManager: () => void;
+  onOpenRegisterModal: () => void;
   currency: 'MGA' | 'EUR';
 }
 
@@ -35,6 +36,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   searchQuery,
   onSearchChange,
   onOpenSupabaseManager,
+  onOpenRegisterModal,
   currency,
 }) => {
   // Certified / Featured courses for the homepage
@@ -114,18 +116,19 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-3.5 justify-center">
             <button
-              onClick={() => onNavigate('catalog')}
-              className="bg-[#C5A059] text-white font-heading font-semibold text-sm px-7 py-3 rounded-md hover:bg-[#b08d4a] transition-all shadow-md"
+              onClick={onOpenRegisterModal}
+              className="bg-[#C5A059] text-white font-heading font-semibold text-sm px-7 py-3 rounded-md hover:bg-[#b08d4a] transition-all shadow-md flex items-center gap-2"
               id="hero-btn-sinscrire"
             >
-              S'inscrire
+              <Sparkles className="w-4 h-4 text-white" />
+              <span>Formulaire d'inscription</span>
             </button>
             <button
               onClick={() => onNavigate('catalog')}
               className="border border-white text-white font-heading font-semibold text-sm px-7 py-3 rounded-md hover:bg-white hover:text-[#003366] transition-all"
               id="hero-btn-en-savoir-plus"
             >
-              En savoir plus
+              Explorer les cours
             </button>
           </div>
 

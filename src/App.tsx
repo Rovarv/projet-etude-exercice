@@ -33,6 +33,7 @@ import { CourseDetailModal } from './components/CourseDetailModal';
 import { CalendarModal } from './components/CalendarModal';
 import { GradesModal } from './components/GradesModal';
 import { CourseLessonModal } from './components/CourseLessonModal';
+import { RegisterModal } from './components/RegisterModal';
 
 export default function App() {
   // Navigation & Filter States
@@ -55,6 +56,7 @@ export default function App() {
   const [isSupabaseManagerOpen, setIsSupabaseManagerOpen] = useState(false);
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
   const [isGradesModalOpen, setIsGradesModalOpen] = useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [activeDashboardSubTab, setActiveDashboardSubTab] = useState<string>('dashboard');
 
   // Toast Notification
@@ -167,6 +169,12 @@ export default function App() {
     setCurrency((prev) => (prev === 'MGA' ? 'EUR' : 'MGA'));
   };
 
+  const handleRegisterStudent = (newStudent: Student) => {
+    setStudent(newStudent);
+    showToast(`Bienvenue à l'Université Rovaniaina, ${newStudent.name} ! Inscription réussie.`);
+    setCurrentScreen('dashboard');
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#f7f9fb] text-[#191c1e] font-sans selection:bg-[#fed488] selection:text-[#001e40]">
       
@@ -189,6 +197,7 @@ export default function App() {
           onSearchChange={(q) => setSearchQuery(q)}
           student={student}
           onOpenSupabaseManager={() => setIsSupabaseManagerOpen(true)}
+          onOpenRegisterModal={() => setIsRegisterModalOpen(true)}
           isSupabaseConnected={supabaseConfig.isConnected}
           currency={currency}
           onToggleCurrency={toggleCurrency}
@@ -209,6 +218,7 @@ export default function App() {
           searchQuery={searchQuery}
           onSearchChange={(q) => setSearchQuery(q)}
           onOpenSupabaseManager={() => setIsSupabaseManagerOpen(true)}
+          onOpenRegisterModal={() => setIsRegisterModalOpen(true)}
           currency={currency}
         />
       )}
@@ -302,6 +312,12 @@ export default function App() {
         isOpen={Boolean(selectedEnrolledForLesson)}
         onClose={() => setSelectedEnrolledForLesson(null)}
         onUpdateProgress={handleUpdateLessonProgress}
+      />
+
+      <RegisterModal
+        isOpen={isRegisterModalOpen}
+        onClose={() => setIsRegisterModalOpen(false)}
+        onRegister={handleRegisterStudent}
       />
 
     </div>

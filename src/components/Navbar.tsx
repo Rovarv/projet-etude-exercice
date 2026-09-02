@@ -11,6 +11,7 @@ interface NavbarProps {
   onSearchChange: (query: string) => void;
   student: Student;
   onOpenSupabaseManager: () => void;
+  onOpenRegisterModal: () => void;
   isSupabaseConnected: boolean;
   currency: 'MGA' | 'EUR';
   onToggleCurrency: () => void;
@@ -25,6 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSearchChange,
   student,
   onOpenSupabaseManager,
+  onOpenRegisterModal,
   isSupabaseConnected,
   currency,
   onToggleCurrency,
@@ -155,6 +157,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </button>
 
+          {/* Registration Button */}
+          <button
+            onClick={onOpenRegisterModal}
+            className="font-heading font-semibold text-xs sm:text-sm bg-white text-[#003366] border border-[#003366]/40 hover:border-[#003366] px-3.5 py-2 rounded-md hover:bg-slate-50 transition-all shadow-sm flex items-center gap-1.5"
+            id="btn-nav-register"
+          >
+            <User className="w-4 h-4 text-[#C5A059]" />
+            <span>S'inscrire</span>
+          </button>
+
           {/* Login / Espace Etudiant CTA Button */}
           {currentScreen === 'dashboard' ? (
             <button
@@ -217,6 +229,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                     className="w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-[#f2f4f6] text-[#191c1e]"
                   >
                     Explorer les cours
+                  </button>
+                  <button
+                    onClick={onOpenRegisterModal}
+                    className="w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-[#f2f4f6] text-[#003366] font-semibold flex items-center justify-between"
+                  >
+                    <span>Formulaire d'inscription</span>
+                    <span className="text-[10px] bg-[#003366] text-white px-1.5 py-0.5 rounded">Nouveau</span>
                   </button>
                   <button
                     onClick={onOpenSupabaseManager}
