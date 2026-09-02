@@ -1,0 +1,6 @@
+{
+  "name": "Université Rovaniaina",
+  "description": "Portail universitaire et catalogue de cours de l'Université Rovaniaina de Madagascar avec Espace Étudiant et gestion dynamique des images via Supabase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
